@@ -256,7 +256,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
   border: 0; background: transparent; color: inherit; text-align: left; font: inherit; cursor: copy;
 }
 .contact__label { font-size: 14px; color: var(--muted); }
-.contact__value { font: 700 clamp(17px, 1.6vw, 22px)/1.2 var(--display); overflow-wrap: anywhere; user-select: all; }
+.contact__value { font: 700 clamp(16px, 1.35vw, 20px)/1.2 var(--display); white-space: nowrap; user-select: all; }
 .contact__hint { font-size: 13px; color: var(--muted); transition: color 200ms var(--ease); }
 .contact.is-copied .contact__hint { color: #3ddc84; }
 .contact__open {
@@ -266,9 +266,6 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .contact__open:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .contact__open svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* Logos: text on top, gallery across the full column so vertical covers are not tiny */
-.case--wide { grid-template-columns: 1fr; }
-.case--wide .case__info { position: static; max-width: 720px; }
 .footer { display: flex; justify-content: space-between; padding: 24px var(--pad); border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 .footer a:hover { color: var(--ink); }
 
@@ -295,8 +292,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
 /* ---------- Responsive ---------- */
+/* Three contact cards side by side only when the email fits on one line */
+@media (max-width: 1240px) { .contacts__links { grid-template-columns: 1fr; } }
 @media (max-width: 1000px) {
-  .contacts__links { grid-template-columns: 1fr; }
   .hero { grid-template-columns: 1fr; }
   .stack { width: min(80%, 420px); }
   .case { grid-template-columns: 1fr; }
