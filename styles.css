@@ -9,7 +9,7 @@
   --accent-ink: #0d0d0f;
   --radius: 18px;
   --gap: 10px;
-  --pad: clamp(16px, 4vw, 64px);
+  --pad: max(clamp(16px, 4vw, 64px), calc((100vw - 1200px) / 2));
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --display: "Unbounded", system-ui, sans-serif;
   --body: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -174,7 +174,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .print { grid-template-columns: 2fr 1fr 1fr; align-items: start; }
 
 /* Story + loyalty icons panel, same height */
-.app { grid-template-columns: 1fr 2fr; }
+
 .loyalty {
   display: grid; align-content: center; gap: 28px; padding: clamp(20px, 3vw, 40px);
   border-radius: var(--radius); background: var(--surface);
@@ -313,8 +313,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
   :root { --gap: 8px; --radius: 14px; }
   .c4 { --cols: 2; }
   .c5 { --cols: 2; }
-  .app { grid-template-columns: 1fr; }
-  .app > .tile { max-width: 70%; justify-self: center; }
+
   .c2, .figs { --cols: 1; }
   .figs > :last-child:nth-child(odd) { grid-column: auto; }
   .stats > div + div { padding-left: 14px; }
