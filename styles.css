@@ -173,6 +173,19 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 /* Print menu large, poster and story smaller beside it */
 .print { grid-template-columns: 2fr 1fr 1fr; align-items: start; }
 
+/* Story + loyalty icons panel, same height */
+.app { grid-template-columns: 1fr 2fr; }
+.loyalty {
+  display: grid; align-content: center; gap: 28px; padding: clamp(20px, 3vw, 40px);
+  border-radius: var(--radius); background: var(--surface);
+}
+.loyalty__icons { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 28px); }
+.loyalty__icons img { width: 100%; filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.45)); transition: transform 300ms var(--ease); }
+.loyalty__icons img:hover { transform: translateY(-4px) rotate(-3deg); }
+.loyalty__text { display: grid; gap: 4px; }
+.loyalty__text b { font: 700 18px/1.2 var(--display); }
+.loyalty__text span { color: var(--muted); font-size: 14px; }
+
 /* Horizontal carousel (Vahaha AI drinks) */
 .sub-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 32px 0 12px; }
 .sub-row .sub { margin: 0; }
@@ -300,8 +313,8 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
   :root { --gap: 8px; --radius: 14px; }
   .c4 { --cols: 2; }
   .c5 { --cols: 2; }
-  .print { grid-template-columns: 1fr 1fr; }
-  .print > :first-child { grid-column: span 2; }
+  .app { grid-template-columns: 1fr; }
+  .app > .tile { max-width: 70%; justify-self: center; }
   .c2, .figs { --cols: 1; }
   .figs > :last-child:nth-child(odd) { grid-column: auto; }
   .stats > div + div { padding-left: 14px; }
