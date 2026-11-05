@@ -41,6 +41,25 @@ if (preview && window.matchMedia('(hover: hover) and (pointer: fine)').matches) 
   });
 }
 
+// --- Carousel arrows: scroll by one visible "page" of items ---
+document.querySelectorAll('.carousel').forEach((track) => {
+  const nav = track.previousElementSibling?.querySelector('.carousel__nav');
+  if (!nav) return;
+  const [prev, next] = nav.querySelectorAll('.carousel__btn');
+  const update = () => {
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+  };
+  nav.querySelectorAll('.carousel__btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      track.scrollBy({ left: Number(btn.dataset.dir) * track.clientWidth, behavior: 'smooth' });
+    });
+  });
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+});
+
 // --- Lightbox: each case is its own group, arrows cycle inside the group ---
 const dialog = document.querySelector('.lightbox');
 const bigImg = dialog.querySelector('.lightbox__img');
