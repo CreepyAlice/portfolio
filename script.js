@@ -60,6 +60,43 @@ document.querySelectorAll('.carousel').forEach((track) => {
   update();
 });
 
+// --- Contacts: click copies the value (clipboard API needs https; GitHub Pages is https) ---
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  // Fallback for file:// previews and old browsers.
+  const area = document.createElement('textarea');
+  area.value = text;
+  area.style.position = 'fixed';
+  area.style.opacity = '0';
+  document.body.appendChild(area);
+  area.select();
+  const ok = document.execCommand('copy');
+  area.remove();
+  if (!ok) throw new Error('copy command rejected');
+}
+
+document.querySelectorAll('.contact__copy').forEach((btn) => {
+  const card = btn.closest('.contact');
+  const hint = btn.querySelector('.contact__hint');
+  const idle = hint.textContent;
+  let timer = 0;
+  btn.addEventListener('click', async () => {
+    try {
+      await copyText(btn.dataset.copy);
+      hint.textContent = 'Скопировано';
+      card.classList.add('is-copied');
+    } catch (err) {
+      console.error('Copy failed:', err);
+      hint.textContent = 'Не получилось — выделите текст и скопируйте вручную';
+    }
+    clearTimeout(timer);
+    timer = setTimeout(() => { hint.textContent = idle; card.classList.remove('is-copied'); }, 2000);
+  });
+});
+
 // --- Lightbox: each case is its own group, arrows cycle inside the group ---
 const dialog = document.querySelector('.lightbox');
 const bigImg = dialog.querySelector('.lightbox__img');

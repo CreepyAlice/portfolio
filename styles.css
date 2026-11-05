@@ -9,7 +9,7 @@
   --accent-ink: #0d0d0f;
   --radius: 18px;
   --gap: 10px;
-  --pad: max(clamp(16px, 4vw, 64px), calc((100vw - 1200px) / 2));
+  --pad: max(clamp(16px, 4vw, 64px), calc((100vw - 1320px) / 2));
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --display: "Unbounded", system-ui, sans-serif;
   --body: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -240,7 +240,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .timeline__date { font-size: 13px; color: var(--accent); }
 .timeline b { font-weight: 600; font-size: 17px; }
 .timeline span:last-child { color: var(--muted); font-size: 14px; }
-.certs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 22px; }
+.cert { width: 140px; margin-top: 10px; }
 .tile--paper { background: #e9e7e2; }
 .tile--paper img { object-fit: contain; }
 
@@ -249,17 +249,26 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .contacts__title { font: 800 clamp(40px, 6.5vw, 108px)/0.92 var(--display); letter-spacing: -0.05em; }
 .contacts__title em { font-weight: 500; color: var(--accent); letter-spacing: -0.02em; }
 .contacts__links { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); margin-top: clamp(32px, 5vw, 64px); }
-.contact {
-  position: relative; display: grid; gap: 6px; padding: 28px; border-radius: var(--radius);
-  background: var(--surface); transition: background-color 250ms var(--ease), color 250ms var(--ease);
+.contact { position: relative; border-radius: var(--radius); background: var(--surface); transition: background-color 250ms var(--ease); }
+.contact:hover { background: var(--surface-2); }
+.contact__copy {
+  display: grid; gap: 6px; width: 100%; padding: 28px; padding-right: 72px;
+  border: 0; background: transparent; color: inherit; text-align: left; font: inherit; cursor: copy;
 }
-.contact__label { font-size: 14px; color: var(--muted); transition: color 250ms var(--ease); }
-.contact__value { font: 700 clamp(17px, 1.6vw, 22px)/1.2 var(--display); overflow-wrap: anywhere; letter-spacing: -0.02em; }
-.contact svg { position: absolute; top: 26px; right: 26px; width: 26px; height: 26px; }
-.contact:hover { background: var(--accent); color: var(--accent-ink); }
-.contact:hover .contact__label { color: var(--accent-ink); }
-.contact:hover svg { transform: translate(3px, -3px); }
+.contact__label { font-size: 14px; color: var(--muted); }
+.contact__value { font: 700 clamp(17px, 1.6vw, 22px)/1.2 var(--display); overflow-wrap: anywhere; user-select: all; }
+.contact__hint { font-size: 13px; color: var(--muted); transition: color 200ms var(--ease); }
+.contact.is-copied .contact__hint { color: #3ddc84; }
+.contact__open {
+  position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 50%; transition: border-color 200ms var(--ease), background-color 200ms var(--ease);
+}
+.contact__open:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.contact__open svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* Logos: text on top, gallery across the full column so vertical covers are not tiny */
+.case--wide { grid-template-columns: 1fr; }
+.case--wide .case__info { position: static; max-width: 720px; }
 .footer { display: flex; justify-content: space-between; padding: 24px var(--pad); border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 .footer a:hover { color: var(--ink); }
 
