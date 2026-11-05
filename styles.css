@@ -227,7 +227,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .timeline__date { font-size: 13px; color: var(--accent); }
 .timeline b { font-weight: 600; font-size: 17px; }
 .timeline span:last-child { color: var(--muted); font-size: 14px; }
-.certificate { margin-top: 22px; }
+.certs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 22px; }
+.tile--paper { background: #e9e7e2; }
+.tile--paper img { object-fit: contain; }
 
 /* ---------- Contacts ---------- */
 .contacts { padding: clamp(80px, 12vw, 160px) var(--pad); border-top: 1px solid var(--line); }
